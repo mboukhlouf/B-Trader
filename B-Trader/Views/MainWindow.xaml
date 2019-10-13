@@ -26,7 +26,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="API Key:" />
-                        <TextBox x:Name="apiKeyTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox x:Name="apiKeyTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text=""/>
                     </Grid>
 
                     <Grid Grid.Row="2" Margin="0 0 0 35">
@@ -36,7 +36,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="Secret Key:" />
-                        <TextBox x:Name="secretKeyTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
+                        <TextBox x:Name="secretKeyTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}" Text=""/>
                     </Grid>
                 </Grid>
             </Border>
@@ -58,6 +58,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Grid.Row="0" Text="BUY " Margin="0 0 0 15" FontSize="14" FontWeight="Bold" />
@@ -71,7 +72,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Total BTC:" />
-                                <TextBox Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
+                                <TextBox x:Name="totalBtcTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
                             </Grid>
 
                             <Grid Grid.Row="2" Margin="0 0 0 5">
@@ -81,7 +82,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Take Profit (%):" />
-                                <TextBox Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
+                                <TextBox x:Name="takeProfitTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
                             </Grid>
 
                             <Grid Grid.Row="3" Margin="0 0 0 35">
@@ -91,19 +92,21 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Stop Loss (%):" />
-                                <TextBox Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
+                                <TextBox x:Name="stopLossTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
                             </Grid>
                             
-                            <Button Grid.Row="4" Style="{StaticResource BuyButtonStyle}" Margin="0 0 0 5" Click="Button_Click">
+                            <Button x:Name="orderButton" Grid.Row="4" Style="{StaticResource BuyButtonStyle}" Margin="0 0 0 5" Click="BuyButton_Click">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="BUY " />
-                                        <TextBlock Text="{Binding ElementName=pairsListBox, Path=SelectedItem.BaseAsset}" />
+                                        <TextBlock Text="{Binding ElementName=pairsListView, Path=SelectedItem.SymbolInfo.BaseAsset}" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <Button Grid.Row="5" Style="{StaticResource FlatButtonStyle}" Content="Test Order"/>
+                            <Button x:Name="testOrderbutton" Grid.Row="5" Style="{StaticResource FlatButtonStyle}" Content="Test Order" Margin="0 0 0 5" Click="BuyButton_Click"/>
+
+                            <controls:Alert x:Name="alert" Grid.Row="6"/>
                         </Grid>
                     </Border>
 
@@ -118,10 +121,10 @@
                             <TextBlock Grid.Column="0" Text="Search:" Margin="0 0 0 2.5"/>
                             <TextBox Grid.Column="1" x:Name="searchTextBox" Style="{StaticResource TextBoxStyle}" TextChanged="SearchTextBox_TextChanged"/>
                         </StackPanel>
-                        <ListView Grid.Row="2" x:Name="pairsListBox" Style="{StaticResource ListViewStyle}">
+                        <ListView Grid.Row="2" x:Name="pairsListView" Style="{StaticResource ListViewStyle}" SelectionMode="Single">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Pair" Width="100" DisplayMemberBinding="{Binding Symbol}" />
+                                    <GridViewColumn Header="Pair" Width="100" DisplayMemberBinding="{Binding SymbolInfo.Symbol}" />
                                     <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
                                 </GridView>
                             </ListView.View>

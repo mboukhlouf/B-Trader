@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Binance;
+
 namespace B_Trader.Models
 {
     public class SymbolPrice : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public String BaseAsset { get; set; }
-        public String QuoteAsset { get; set; }
-        public String Symbol { get => $"{BaseAsset}{QuoteAsset}";  }
+        public SymbolInfo SymbolInfo { get; set; }
 
         private decimal? price;
         public decimal? Price
@@ -30,10 +30,9 @@ namespace B_Trader.Models
         {
         }
 
-        public SymbolPrice(String baseAsset, String quoteAsset, decimal? price)
+        public SymbolPrice(SymbolInfo symbolInfo, decimal? price)
         {
-            BaseAsset = baseAsset;
-            QuoteAsset = quoteAsset;
+            SymbolInfo = symbolInfo;
             Price = price;
         }
 

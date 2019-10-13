@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="B_Trader.Views.Controls.Alert"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:B_Trader.Views.Controls"
+              mc:Ignorable="d" d:DesignWidth="400" Visibility="Collapsed">
+    <UserControl.Resources>
+        <Style TargetType="local:Alert">
+            <Style.Triggers>
+                <Trigger Property="AlertType" Value="Information">
+                    <Setter Property="Background" Value="#7Fcce5ff" />
+                    <Setter Property="Foreground" Value="#FF004085" />
+                </Trigger>
+                <Trigger Property="AlertType" Value="Success">
+                    <Setter Property="Background" Value="#7FD4EDDA" />
+                    <Setter Property="Foreground" Value="#FF155724" />
+                </Trigger>
+                <Trigger Property="AlertType" Value="Error">
+                    <Setter Property="Background" Value="#7Ff8d7da" />
+                    <Setter Property="Foreground" Value="#FF721c24" />
+                </Trigger>
+                <Trigger Property="AlertType" Value="Warning">
+                    <Setter Property="Background" Value="#7F856404" />
+                    <Setter Property="Foreground" Value="#FFfff3cd" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Padding="20 12 20 12">
+            <TextBlock x:Name="alertMessageTextBlock" />
+        </Border>
+    </Grid>
+</UserControl>
