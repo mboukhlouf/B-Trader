@@ -219,4 +219,38 @@
             </Style>
         </Style.Resources>
     </Style>
+    
+    <!-- ListView style -->
+    <Style x:Key="ListViewStyle" TargetType="{x:Type ListView}">
+        <Style.Resources>
+            <Style TargetType="{x:Type ListViewItem}">
+                <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+                <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Border x:Name="Border" Padding="2" SnapsToDevicePixels="true">
+                                <Border.Background>
+                                    <SolidColorBrush Color="Transparent" />
+                                </Border.Background>
+                                <GridViewRowPresenter />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource BinanceYellowColorBrush2}" TargetName="Border"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource BinanceYellowColorBrush2}" TargetName="Border"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False" />
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
 </ResourceDictionary>

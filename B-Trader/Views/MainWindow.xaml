@@ -94,7 +94,7 @@
                                 <TextBox Grid.Column="1" Style="{StaticResource TextBoxStyle}"/>
                             </Grid>
                             
-                            <Button Grid.Row="4" Style="{StaticResource BuyButtonStyle}" Margin="0 0 0 5">
+                            <Button Grid.Row="4" Style="{StaticResource BuyButtonStyle}" Margin="0 0 0 5" Click="Button_Click">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="BUY " />
@@ -118,13 +118,14 @@
                             <TextBlock Grid.Column="0" Text="Search:" Margin="0 0 0 2.5"/>
                             <TextBox Grid.Column="1" x:Name="searchTextBox" Style="{StaticResource TextBoxStyle}" TextChanged="SearchTextBox_TextChanged"/>
                         </StackPanel>
-                        <ListBox Grid.Row="2" x:Name="pairsListBox" Style="{StaticResource ListBoxStyle}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <ListView Grid.Row="2" x:Name="pairsListBox" Style="{StaticResource ListViewStyle}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Pair" Width="100" DisplayMemberBinding="{Binding Symbol}" />
+                                    <GridViewColumn Header="Price" Width="100" DisplayMemberBinding="{Binding Price}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </Grid>
                 </Grid>
             </Border>
